@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,7 +7,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 String? stringResponse;
-Map? mapResponse;
+Map? mapResponse; //bcz map value
+Map? dataResponse;
+//means keyword response (finding any value mapped in keywords)
+List? listResponse;
 
 class Open_Page extends StatefulWidget {
   const Open_Page({super.key});
@@ -60,7 +63,9 @@ class _Open_PageState extends State<Open_Page> {
     if (response.statusCode == 200) {
       setState(() {
         stringResponse = response.body;
-        //   mapResponse = json.decode(response.body);
+        // print(stringResponse);
+        mapResponse = json.decode(response.body);
+        listResponse = mapResponse!['keywords'];
       });
     } else {
       return CircularProgressIndicator();
@@ -165,7 +170,11 @@ class _Open_PageState extends State<Open_Page> {
                       color: Colors.red,
                       width: w,
                       height: 150,
-                      child: Center(child: Text(stringResponse.toString())),
+                      child: Center(
+                          child: listResponse == null
+                              ? Center(child: CircularProgressIndicator())
+                              : Text(
+                                  listResponse![0]['description'].toString())),
                       // child: FutureBuilder(
                       //   future: apicall(),
                       //   builder: (context, snapshot) {
