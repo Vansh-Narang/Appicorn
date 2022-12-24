@@ -139,18 +139,18 @@ class _Open_PageState extends State<Open_Page> {
               SizedBox(height: 30),
               Container(
                 child: Row(children: [
-                  ElevatedButton(
+                  TextButton(
                       style: ButtonStyle(
                         overlayColor: getColor(Colors.black, Colors.teal),
                       ),
                       onPressed: () {},
                       child: Text("Tech")),
                   SizedBox(width: 23),
-                  ElevatedButton(onPressed: () {}, child: Text("Sports")),
+                  TextButton(onPressed: () {}, child: Text("Sports")),
                   SizedBox(width: 23),
-                  ElevatedButton(onPressed: () {}, child: Text("Politics")),
+                  TextButton(onPressed: () {}, child: Text("Politics")),
                   SizedBox(width: 23),
-                  ElevatedButton(onPressed: () {}, child: Text("Music")),
+                  TextButton(onPressed: () {}, child: Text("Music")),
                 ]),
               ),
               SizedBox(height: 30),
@@ -167,35 +167,42 @@ class _Open_PageState extends State<Open_Page> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      color: Colors.red,
-                      width: w,
-                      height: 150,
-                      child: Center(
+                        color: Color.fromARGB(255, 255, 244, 244),
+                        width: w,
+                        height: 150,
+                        child: Center(
                           child: listResponse == null
                               ? Center(child: CircularProgressIndicator())
-                              : Text(
-                                  listResponse![0]['description'].toString())),
-                      // child: FutureBuilder(
-                      //   future: apicall(),
-                      //   builder: (context, snapshot) {
-                      //     if (snapshot.connectionState ==
-                      //         ConnectionState.done) {
-                      //       final data = snapshot.data as String;
-                      //       return Center(
-                      //           child: Text(
-                      //         "$data",
-                      //         style: TextStyle(fontSize: 18),
-                      //         //   return Awesomedata(snapshot.data);
-                      //       ));
-                      //     } else {
-                      //       return Center(child: CircularProgressIndicator());
-                      //     }
-                      //   },
-                      // ),
-                      // child: Image(
-                      //     image: NetworkImage(
-                      //         "https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpgZ"),
-                      //     fit: BoxFit.fitWidth),
+                              : Image.network(
+                                  listResponse![0]['imageUrl'].toString(),
+                                  fit: BoxFit.cover,
+                                ),
+                        )
+                        // child: FutureBuilder(
+                        //   future: apicall(),
+                        //   builder: (context, snapshot) {
+                        //     if (snapshot.connectionState ==
+                        //         ConnectionState.done) {
+                        //       final data = snapshot.data as String;
+                        //       return Center(
+                        //           child: Text(
+                        //         "$data",
+                        //         style: TextStyle(fontSize: 18),
+                        //         //   return Awesomedata(snapshot.data);
+                        //       ));
+                        //     } else {
+                        //       return Center(child: CircularProgressIndicator());
+                        //     }
+                        //   },
+                        // ),
+                        // child: Image(
+                        //     image: NetworkImage(
+                        //         "https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpgZ"),
+                        //     fit: BoxFit.fitWidth),
+                        ),
+                    Container(
+                      child: Text(listResponse![0]["description"],
+                          maxLines: 5, overflow: TextOverflow.ellipsis),
                     ),
                     Container(
                         height: 100,
@@ -203,9 +210,6 @@ class _Open_PageState extends State<Open_Page> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              child: Text("Here you will get the news Info"),
-                            ),
                             //  SizedBox(height: 156),
                             Container(
                               child: ElevatedButton(

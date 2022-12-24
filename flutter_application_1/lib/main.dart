@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Fetchdata/fetchdata.dart';
-import 'package:flutter_application_1/MyUi/trending.dart';
+import 'package:flutter_application_1/MyUi/NewTrend.dart';
 import 'package:flutter_application_1/Pages/home.dart';
 import 'package:flutter_application_1/MyUi/HomeScreen.dart';
 import 'package:flutter_application_1/MyUi/RegistorApp.dart';
@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           brightness: Brightness.light, primaryColor: AppColors.primary),
-      home: Open_Page(),
+      home: Trend_Page(),
     );
   }
 }
