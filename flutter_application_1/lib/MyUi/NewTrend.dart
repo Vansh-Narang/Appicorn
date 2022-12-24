@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +8,8 @@ String? stringResponse;
 Map? mapResponse;
 Map? dataResponse;
 List? listResponse;
-String ?colordetect;
+String? colordetect;
+int temp = 99;
 
 class Trend_Page extends StatefulWidget {
   const Trend_Page({super.key});
@@ -140,21 +140,23 @@ class _Trend_PageState extends State<Trend_Page> {
                             ]),
                             Row(
                               children: [
-                                Container(
-                                ),
                                 // Container(
-                                //   child: Text(
-                                //     "Confidence :" +
-                                //         " " +
-                                //         listResponse![index]["sourceConfidence"]
-                                //             .toString(),
-                                //     style: GoogleFonts.roboto(
-                                //         textStyle: TextStyle(
-                                //             decoration:
-                                //                 TextDecoration.underline,
-                                //             fontWeight: FontWeight.w700)),
-                                //   ),
+
                                 // ),
+                                Container(
+                                  child: Text(
+                                    "Confidence :" +
+                                        " " +
+                                        listResponse![index]["sourceConfidence"]
+                                            .toString(),
+                                    style: GoogleFonts.roboto(
+                                        textStyle: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.green,
+                                    )),
+                                  ),
+                                ),
                                 // SizedBox(width: 10),
                                 Container(
                                   child: Text(
@@ -220,4 +222,3 @@ class _Trend_PageState extends State<Trend_Page> {
     );
   }
 }
-
