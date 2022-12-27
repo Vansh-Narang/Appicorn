@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_application_1/MyUi/NewTrend.dart';
+import 'package:flutter_application_1/mainpage/Imagecontainer.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:dio/dio.dart';
@@ -80,168 +83,207 @@ class _Open_PageState extends State<Open_Page> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> tabs = ['Sports', 'Health', 'Food', 'Tech'];
     var w = MediaQuery.of(context).size.width;
     var h = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.blue,
-                ))
-          ],
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: Text(
-            "Tech Newz",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-          )),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: new EdgeInsets.only(top: 20),
-                child: Text(
-                  "Hi Name",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                ),
-              ),
-              SizedBox(height: 30),
-              Text(
-                "Explore Today's",
-                style: TextStyle(
+    return DefaultTabController(
+      length: tabs.length,
+      initialIndex: 0,
+      child: Scaffold(
+        appBar: AppBar(
+            actions: [
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.notifications,
                     color: Colors.blue,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 3, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10)),
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {},
-                  ),
-                  hintText: "Search",
-                ),
-                controller: fieldText,
-              ),
-              SizedBox(height: 30),
-              Container(
-                child: Row(children: [
-                  TextButton(
-                      style: ButtonStyle(
-                        overlayColor: getColor(Colors.black, Colors.teal),
-                      ),
-                      onPressed: () {},
-                      child: Text("Tech")),
-                  SizedBox(width: 23),
-                  TextButton(onPressed: () {}, child: Text("Sports")),
-                  SizedBox(width: 23),
-                  TextButton(onPressed: () {}, child: Text("Politics")),
-                  SizedBox(width: 23),
-                  TextButton(onPressed: () {}, child: Text("Music")),
-                ]),
-              ),
-              SizedBox(height: 30),
-              Text(
-                "Trending Today",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 10),
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                        color: Color.fromARGB(255, 255, 244, 244),
-                        width: w,
-                        height: 150,
-                        child: Center(
-                          child: listResponse == null
-                              ? Center(child: CircularProgressIndicator())
-                              : Image.network(
-                                  listResponse![0]['imageUrl'].toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                        )
-                        // child: FutureBuilder(
-                        //   future: apicall(),
-                        //   builder: (context, snapshot) {
-                        //     if (snapshot.connectionState ==
-                        //         ConnectionState.done) {
-                        //       final data = snapshot.data as String;
-                        //       return Center(
-                        //           child: Text(
-                        //         "$data",
-                        //         style: TextStyle(fontSize: 18),
-                        //         //   return Awesomedata(snapshot.data);
-                        //       ));
-                        //     } else {
-                        //       return Center(child: CircularProgressIndicator());
-                        //     }
-                        //   },
-                        // ),
-                        // child: Image(
-                        //     image: NetworkImage(
-                        //         "https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpgZ"),
-                        //     fit: BoxFit.fitWidth),
-                        ),
-                    Container(
-                      child: Text(listResponse![0]["description"],
-                          maxLines: 5, overflow: TextOverflow.ellipsis),
-                    ),
-                    Container(
-                        height: 100,
-                        width: w,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //  SizedBox(height: 156),
-                            Container(
-                              child: ElevatedButton(
-                                  onPressed: () {}, child: Text("Read more")),
-                            ),
-                          ],
-                        )),
-                  ],
-                ),
-              ),
+                  ))
             ],
+            iconTheme: IconThemeData(color: Colors.black),
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            title: Text(
+              "Tech Newz",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+            )),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: new EdgeInsets.only(top: 20),
+                  child: Text(
+                    "Welcome Back!",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Text(
+                  "Explore Today's",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 3, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10)),
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () {
+                      },
+                    ),
+                    hintText: "Search",
+                  ),
+                  controller: fieldText,
+                ),
+                SizedBox(height: 30),
+                Container(
+                  child: Column(children: [
+                    TabBar(
+                        isScrollable: true,
+                        indicatorColor: Colors.lightBlue,
+                        tabs: tabs
+                            .map((tab) => Tab(
+                                  icon: Text(
+                                    tab,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineSmall!
+                                        .copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22,
+                                        ),
+                                  ),
+                                ))
+                            .toList())
+                  ]),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: TabBarView(
+                    children: tabs
+                        .map((tab) => ListView.separated(
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Trend_Page()));
+                                  },
+                                  child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ImageContainer(
+                                          width: 80,
+                                          height: 80,
+                                          margin: const EdgeInsets.all(10.0),
+                                          borderRadius: 5,
+                                          imageUrl: listResponse![index]
+                                              ['imageUrl'],
+                                        ),
+                                        Expanded(
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  listResponse![index]
+                                                      ['description'],
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.category,
+                                                    size: 18,
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(
+                                                    listResponse![index]
+                                                        ['category'],
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
+                                                  ),
+                                                  const SizedBox(width: 20),
+                                                  const Icon(
+                                                    Icons.trending_up,
+                                                    size: 18,
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(
+                                                    "Trending Now",
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
+                                                  ),
+                                                ],
+                                              ),
+                                            ]))
+                                      ]),
+                                );
+                              },
+                              itemCount: listResponse == null
+                                  ? 0
+                                  : listResponse!.length,
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return Divider();
+                              },
+                            ))
+                        .toList(),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up_sharp),
-            label: 'Trending',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.trending_up_sharp),
+              label: 'Trending',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+          currentIndex: selectedIndex,
+          selectedItemColor: Colors.blue,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

@@ -66,6 +66,7 @@ class _Trend_PageState extends State<Trend_Page> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     var w = MediaQuery.of(context).size.width;
     String a;
     return Scaffold(
@@ -105,13 +106,20 @@ class _Trend_PageState extends State<Trend_Page> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                                height: 90,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 60,
                                 width: 67,
-                                child: Image.network(
-                                  listResponse![index]["imageUrl"],
-                                  fit: BoxFit.cover,
-                                )),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  child: Image.network(
+                                    listResponse![index]["imageUrl"],
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
                             // SizedBox(height: 10),
                           ],
                         ),
@@ -121,70 +129,79 @@ class _Trend_PageState extends State<Trend_Page> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
+                              child: Text(
+                                listResponse![index]["category"].toString(),
+                                style: GoogleFonts.roboto(
+                                    textStyle: TextStyle(
+                                        color: Color.fromARGB(255, 90, 90, 90),
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                            Container(
                                 child: Text(
                               listResponse![index]["title"].toString(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900, fontSize: 22),
+                              style: GoogleFonts.lato(
+                                  fontWeight: FontWeight.w900, fontSize: 20),
                             )),
                             Row(children: [
                               SizedBox(
-                                width: 300,
+                                width: 250,
                                 child: Text(
                                   listResponse![index]["description"]
                                       .toString(),
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,
+                                  maxLines: 2,
                                   style: GoogleFonts.lato(),
                                 ),
                               )
                             ]),
                             Row(
                               children: [
-                                // Container(
-
-                                // ),
+                                Container(
+                                    height: size.height / 100,
+                                    width: size.width / 50,
+                                    decoration: BoxDecoration(
+                                        color: listResponse![index]
+                                                        ['sourceConfidence']
+                                                    as int >
+                                                90
+                                            ? Colors.green
+                                            : Colors.red,
+                                        borderRadius:
+                                            BorderRadius.circular(100))),
+                                const SizedBox(width: 5),
                                 Container(
                                   child: Text(
-                                    "Confidence :" +
+                                    "Source :" +
                                         " " +
-                                        listResponse![index]["sourceConfidence"]
+                                        listResponse![index]["dataSources"]
                                             .toString(),
-                                    style: GoogleFonts.roboto(
-                                        textStyle: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.green,
-                                    )),
-                                  ),
-                                ),
-                                // SizedBox(width: 10),
-                                Container(
-                                  child: Text(
-                                    " " +
-                                        "Category :" +
-                                        " " +
-                                        listResponse![index]["category"]
-                                            .toString(),
-                                    style: GoogleFonts.roboto(
-                                        textStyle: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.bold)),
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 79, 170, 255),
+                                        fontWeight: FontWeight.w700,
+                                        fontStyle: FontStyle.italic),
                                   ),
                                 ),
                               ],
                             ),
-                            Container(
-                              child: Text(
-                                "Data Source :" +
-                                    " " +
-                                    listResponse![index]["dataSources"]
-                                        .toString(),
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontStyle: FontStyle.italic),
-                              ),
-                            ),
+                            // RichText(
+                            //   text: TextSpan(
+                            //     style: Theme.of(context).textTheme.bodySmall,
+                            //     children: [
+                            //       WidgetSpan(
+                            //         child: Padding(
+                            //           padding: const EdgeInsets.symmetric(
+                            //               horizontal: 2.0),
+                            //           child: Icon(Icons.timelapse),
+                            //         ),
+                            //       ),
+                            //       TextSpan(
+                            //           text: listResponse![index]["dateCreated"]
+                            //               .toString()),
+                            //     ],
+                            //   ),
+                            // )
                           ],
                         ),
                       ],
