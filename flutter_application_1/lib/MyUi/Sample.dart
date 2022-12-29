@@ -149,7 +149,7 @@ class _Trend_PageState1 extends State<Trend_Page1> {
                               child: Text(
                                 "Source :" +
                                     " " +
-                                    listResponse![index]["dataSources"]
+                                    listResponse![index]["dataSource"]
                                         .toString(),
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 79, 170, 255),
