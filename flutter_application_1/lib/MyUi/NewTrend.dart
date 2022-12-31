@@ -185,23 +185,6 @@ class _Trend_PageState extends State<Trend_Page> {
                                 ),
                               ],
                             ),
-                            // RichText(
-                            //   text: TextSpan(
-                            //     style: Theme.of(context).textTheme.bodySmall,
-                            //     children: [
-                            //       WidgetSpan(
-                            //         child: Padding(
-                            //           padding: const EdgeInsets.symmetric(
-                            //               horizontal: 2.0),
-                            //           child: Icon(Icons.timelapse),
-                            //         ),
-                            //       ),
-                            //       TextSpan(
-                            //           text: listResponse![index]["dateCreated"]
-                            //               .toString()),
-                            //     ],
-                            //   ),
-                            // )
                           ],
                         ),
                       ],

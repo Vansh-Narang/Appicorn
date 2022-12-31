@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           brightness: Brightness.light, primaryColor: AppColors.primary),
-      home: Trend_Page1(),
+      home: Open_Page(),
     );
   }
 }

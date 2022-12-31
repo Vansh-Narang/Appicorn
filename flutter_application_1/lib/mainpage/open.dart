@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_application_1/MyUi/SearchPage.dart';
+import 'package:flutter_application_1/mainpage/FetchSearch.dart';
 import 'package:flutter_application_1/MyUi/NewTrend.dart';
 import 'package:flutter_application_1/mainpage/Imagecontainer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,14 +53,6 @@ class _Open_PageState extends State<Open_Page> {
     fieldText.clear();
   }
 
-  // Future<String> getData() {
-  //   return Future.delayed(
-  //     Duration(seconds: 2),
-  //     () {
-  //       return "Data fetched";
-  //     },
-  //   );
-  // }
   Future apicall() async {
     http.Response response;
     response = await http
@@ -75,6 +69,9 @@ class _Open_PageState extends State<Open_Page> {
     }
   }
 
+  List<Book> books = [];
+  String query = "";
+
   @override
   void initState() {
     apicall();
@@ -83,7 +80,7 @@ class _Open_PageState extends State<Open_Page> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> tabs = ['Sports', 'Health', 'Food', 'Tech'];
+    List<String> tabs = ['Sports', 'Health', 'Food', 'Tech', 'Others'];
     var w = MediaQuery.of(context).size.width;
     var h = MediaQuery.of(context).size.height;
     return DefaultTabController(
@@ -137,10 +134,11 @@ class _Open_PageState extends State<Open_Page> {
                         borderSide: BorderSide(width: 3, color: Colors.grey),
                         borderRadius: BorderRadius.circular(10)),
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.search),
-                      onPressed: () {
-                      },
-                    ),
+                        icon: Icon(Icons.search),
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => New_Page()))),
                     hintText: "Search",
                   ),
                   controller: fieldText,

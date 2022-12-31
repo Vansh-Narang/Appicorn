@@ -108,7 +108,9 @@ class _Trend_PageState1 extends State<Trend_Page1> {
                         ClipRRect(
                             borderRadius: BorderRadius.circular(6),
                             child: Image.network(
-                              listResponse![index]['imageUrl'],
+                              'imageUrl'.isEmpty
+                                  ? AssetImage("assets/Error.jpeg")
+                                  : listResponse![index]['imageUrl'],
                               height: 200,
                               width: MediaQuery.of(context).size.width,
                               fit: BoxFit.cover,
@@ -164,111 +166,6 @@ class _Trend_PageState1 extends State<Trend_Page1> {
                   ),
                 )),
           );
-          // return Padding(
-          //   padding: const EdgeInsets.only(left: 6, right: 6, top: 6),
-          //   child: Container(
-          //     width: w,
-          //     decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(12.0),
-          //         color: Color.fromARGB(255, 218, 242, 255)),
-          //     child: Column(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       crossAxisAlignment: CrossAxisAlignment.start,
-          //       children: [
-          //         Padding(
-          //           padding: const EdgeInsets.only(top: 5, left: 0, right: 2),
-          //           child: Row(
-          //             children: [
-          //               Row(
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Padding(
-          //                     padding: const EdgeInsets.all(8.0),
-          //                     child: Container(
-          //                       height: 60,
-          //                       width: 67,
-          //                       child: ClipRRect(
-          //                         borderRadius: BorderRadius.circular(12.0),
-          //                         child: Image.network(
-          //                           listResponse![index]["imageUrl"],
-          //                           fit: BoxFit.fill,
-          //                         ),
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ],
-          //               ),
-          //               SizedBox(width: 10),
-          //               Column(
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 mainAxisAlignment: MainAxisAlignment.center,
-          //                 children: [
-          //                   Container(
-          //                     child: Text(
-          //                       listResponse![index]["category"].toString(),
-          //                       style: GoogleFonts.roboto(
-          //                           textStyle: TextStyle(
-          //                               color: Color.fromARGB(255, 90, 90, 90),
-          //                               fontWeight: FontWeight.bold)),
-          //                     ),
-          //                   ),
-          //                   Container(
-          //                       child: Text(
-          //                     listResponse![index]["title"].toString(),
-          //                     style: GoogleFonts.lato(
-          //                         fontWeight: FontWeight.w900, fontSize: 20),
-          //                   )),
-          //                   Row(children: [
-          //                     SizedBox(
-          //                       width: 250,
-          //                       child: Text(
-          //                         listResponse![index]["description"]
-          //                             .toString(),
-          //                         overflow: TextOverflow.ellipsis,
-          //                         maxLines: 2,
-          //                         style: GoogleFonts.lato(),
-          //                       ),
-          //                     )
-          //                   ]),
-          //                   Row(
-          //                     children: [
-          //                       Container(
-          //                           height: size.height / 100,
-          //                           width: size.width / 50,
-          //                           decoration: BoxDecoration(
-          //                               color: listResponse![index]
-          //                                               ['sourceConfidence']
-          //                                           as int >
-          //                                       90
-          //                                   ? Colors.green
-          //                                   : Colors.red,
-          //                               borderRadius:
-          //                                   BorderRadius.circular(100))),
-          //                       const SizedBox(width: 5),
-          //                       Container(
-          //                         child: Text(
-          //                           "Source :" +
-          //                               " " +
-          //                               listResponse![index]["dataSources"]
-          //                                   .toString(),
-          //                           style: TextStyle(
-          //                               color:
-          //                                   Color.fromARGB(255, 79, 170, 255),
-          //                               fontWeight: FontWeight.w700,
-          //                               fontStyle: FontStyle.italic),
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // );
         },
         itemCount: listResponse == null ? 0 : listResponse!.length,
         separatorBuilder: (BuildContext context, int index) {
